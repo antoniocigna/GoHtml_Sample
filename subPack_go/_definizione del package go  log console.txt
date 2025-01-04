@@ -1,0 +1,117 @@
+
+1) devo creare un package _myPackage  con modulo "corporaElabProva.go" e un sotto package "crpSubPack"
+	-------------------------------------
+
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE>dir
+	 Il volume nell'unità D è Volume
+	 Numero di serie del volume: 9092-8CA8
+
+	 Directory di D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE
+
+	26/10/2024  13:57    <DIR>          .
+	26/10/2024  11:36    <DIR>          ..
+	26/10/2024  11:11               297 corporaElabProva.go
+	26/10/2024  13:57    <DIR>          crpSubPack
+	26/10/2024  12:23                42 ubuild.bat
+				   2 File            339 byte
+				   3 Directory  1.733.253.505.024 byte disponibili
+				   
+===============================================================================================
+2) vado nella sotto directory crpSubPack 			   
+
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE>cd crpSubPack
+
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE\crpSubPack>dir
+	 Il volume nell'unità D è Volume
+	 Numero di serie del volume: 9092-8CA8
+
+	 Directory di D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE\crpSubPack
+
+	26/10/2024  13:57    <DIR>          .
+	26/10/2024  13:57    <DIR>          ..
+	26/10/2024  11:17             1.166 color.go
+	26/10/2024  12:22             2.033 crpMain.go
+	26/10/2024  13:47             3.116 read_any_text_file.go
+	09/09/2024  23:27            12.385 _funzioni.txt
+				   4 File         18.700 byte
+				   2 Directory  1.733.253.505.024 byte disponibili
+
+=====================================================================================================
+questo sub package contiene il modulo  crpMain.go 
+3) creo il go.mod   di questo package ==> go mod init crpMain.go
+	
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE\crpSubPack>go mod init crpMain.go
+	go: creating new go.mod: module crpMain.go
+	go: to add module requirements and sums:
+			go mod tidy
+
+=====================================================================================================
+cambio il path del package per indicare che si tratta di una sotto directory
+4) go mod edit -replace crpMain=/crpMain
+	
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE\crpSubPack>go mod edit -replace crpMain=/crpMain
+4.5)  esegui ==> go get golang.org/x/net              *** serve per ottenere l'ultimo release
+=====================================================================================================
+5) torno alla directory del main package==> cd .. 
+
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE\crpSubPack>cd ..
+
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE>dir
+	 Il volume nell'unità D è Volume
+	 Numero di serie del volume: 9092-8CA8
+
+	 Directory di D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE
+
+	26/10/2024  13:57    <DIR>          .
+	26/10/2024  11:36    <DIR>          ..
+	26/10/2024  11:11               297 corporaElabProva.go
+	26/10/2024  13:58    <DIR>          crpSubPack
+	26/10/2024  12:23                42 ubuild.bat
+				   2 File            339 byte
+				   3 Directory  1.733.253.505.024 byte disponibili
+			   
+=====================================================================================================			   
+nella directory del main package c'è il modulo iniziale del package corporaElabProva.go 
+6) creo il go.mod   di questo main package ==> go mod init corporaElabProva.go
+	
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE>go mod init corporaElabProva.go
+	go: creating new go.mod: module corporaElabProva.go
+	go: to add module requirements and sums:
+			go mod tidy
+
+=====================================================================================================
+cambio il path del sub package per indicare che si tratta di una sotto directory
+7) go mod edit -replace crpSubPack=/crpSubPack
+
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE>go mod edit -replace crpSubPack=/crpSubPack
+
+=====================================================================================================
+8) eseguo il mod tidy
+	
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE>go mod tidy
+	go: found crpSubPack in crpSubPack v0.0.0-00010101000000-000000000000
+
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE>dir
+	 Il volume nell'unità D è Volume
+	 Numero di serie del volume: 9092-8CA8
+
+	 Directory di D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE
+
+	26/10/2024  13:59    <DIR>          .
+	26/10/2024  11:36    <DIR>          ..
+	26/10/2024  11:11               297 corporaElabProva.go
+	26/10/2024  13:58    <DIR>          crpSubPack
+	26/10/2024  13:59               128 go.mod
+	26/10/2024  12:23                42 ubuild.bat
+				   3 File            467 byte
+				   3 Directory  1.733.253.505.024 byte disponibili
+			   
+=======================================================================================================
+9) tutto è pronto per iniziare a lavorare  ( es.  go build per compilare)			   
+
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE>go build corporaElabProva.go
+	# crpSubPack
+	crpSubPack\crpMain.go:27:2: syntax error: non-declaration statement outside function body
+
+
+	D:\ANTONIO\K_L_M_N\LINGUE\PARALLEL_TEXT_CORPORA\SW\_my_PACKAGE>
