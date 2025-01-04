@@ -4,7 +4,8 @@ package subPack_go
 		"fmt"
 		"os"
 		"os/signal"
-		//"strings"	
+		"strings"		
+		"strconv"
 		"runtime"	
 	)
 //---------------------
@@ -46,7 +47,9 @@ func Main() {
 	fmt.Println("exiting") // log.Println("exiting...")
 }
 //-----------------------------------------
+
 func endBegin(wh string) {
+
 	//fmt.Println("func endBegin (", wh,")")
 	if sw_stop { 
 		fmt.Println("\nXXXXXXXX  error found XXXXXXXXXXXXXX\n"); 
@@ -61,6 +64,22 @@ func check(e error) {
     }
 }
 
-//--------------------------------
+//-----------------------------------------
+
+func getInt(x string) int {	
+	y1, e1 := strconv.Atoi( x ) 
+	if e1 == nil { 
+		return y1
+	} 
+	y2, e2 := strconv.Atoi(  "0"+strings.TrimSpace(x)  ) 
+	if e2 == nil {
+		return y2
+	} else {
+		fmt.Println("error in getInt(",x,") ", e2) 
+	}
+	return 0
+}
+
+//-----------------------------------------------------------
 //end of g00_main.go
 //------------------------------------------------------

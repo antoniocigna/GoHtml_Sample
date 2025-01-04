@@ -11,9 +11,10 @@ package subPack_go
 //------------------------------------------------
 //g03_html_env.go	
 //--------------------------------------------------------
+
+const screen_perc_scale int = 80; 
+
 var scrX, scrY int = getScreenXY();
-
-
 //------------------------------
 
 var ui, err = lorca.New("", "", scrX, scrY); // crea ambiente html e javascript  // if height and width set to more then maximum (eg. 2000, 2000), it seems it works  
@@ -33,8 +34,12 @@ func getScreenXY() (int, int) {
 	width  = width  - 20;  // subtraction to make room for any decorations 
 	height = height - 40;  // subtraction to make room for any decorations 
 	
+	width  = int( width  * screen_perc_scale / 100 ) 
+	height = int( height * screen_perc_scale / 100 ) 
+	
 	return width, height
-}
+	
+} // end of getScreenXY()
 //----------------------------------	
 
 func begin_GO_HTML_Talk() { 	

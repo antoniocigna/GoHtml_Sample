@@ -6,9 +6,10 @@ import (
 	"runtime"
 )
 //------------------------
-//go_exec_js_function.go
+//g05_go_exec_js_function.go
 //----------------------------------------------------------------
 func go_exec_js_function(js_function0 string, inpstr string) {
+
 	var goFunc string 
  	pc, _, _, ok := runtime.Caller(1)
 	details := runtime.FuncForPC(pc)
@@ -27,13 +28,7 @@ func go_exec_js_function(js_function0 string, inpstr string) {
 	if k1 > 0 {
 		js_parm     = strings.ReplaceAll(  js_function[k1+1:], ")","")			
 		js_function = strings.TrimSpace(js_function[0:k1] )
-	} 
-	/**
-	fmt.Println("  js_function=" + js_function)
-	fmt.Println("      js_parm=" + js_parm)
-	fmt.Println("jsInpFunction=" + jsInpFunction)
-	fmt.Println("       goFunc=" + goFunc)
-	**/
+	} 	
 	
 	/*
 	This function executes a javascript eval command 
@@ -49,14 +44,11 @@ func go_exec_js_function(js_function0 string, inpstr string) {
 	
 	evalStr := fmt.Sprintf( "%s(`%s`,`%s`,`%s`,`%s`);",  js_function, inpstr, js_parm, "js=" + jsInpFunction, "go=" + goFunc ) ; 
 	
-	//fmt.Println("evalStr=" + evalStr); 
-	
 	ui.Eval(evalStr)
 	
 } // end of go_exec_js_function
+
 //----------------------------------------------------------------
 
-
-//--------------------------------
-// end of go_exec_js_function.go
+// end of g05_go_exec_js_function.go
 //----------------------------------------------------
